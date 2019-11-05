@@ -13,6 +13,18 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    def size(self):
+        count = 0
+        current = self.head
+        if current is None:
+            return count
+        else:
+            while current is not None:
+                count += 1
+                current = current.next
+            print("size: {}".format(count))
+            return count
+
     def make_new_list(self):
         """
         Helper function to generate lists
@@ -161,6 +173,28 @@ class LinkedList:
         print("could not find {}".format(key))
         return False
 
+    def middle(self):
+        """
+        Get the middle element of LinkedList
+        Have one pointer iterate by one (slow)
+        Another iterate by two (fast) - slow will be median when fast is at the end
+        relies on self.size()
+        :return: Node.data of the middle element
+        """
+        if self.head is None:
+            return False
+
+        slow, fast = self.head, self.head
+        while (slow is not None and fast is not None and fast.next is not None):
+            """
+            Slow iterates by 1
+            Fast iterates by 2
+            """
+            fast = fast.next.next
+            slow = slow.next
+        print("the median: {}".format(slow.data))
+        return slow.data
+
     def delete_head(self):
         """
         Delete head element of LinkedList
@@ -216,7 +250,20 @@ class LinkedList:
         self.head = previous
         return self.head
 
-
+    def findKthFromEnd(self, k):
+        """
+        Find the Kth element from the end, if exists
+        :param k: Value to find that is K from the end
+        :return: False if K > list size,
+        """
+        current = self.head
+        size = self.size()
+        if size < k:
+            return False
+        for i in range(0, (size - (k + 1))):
+            current = current.next
+        print("{} is {} from the end ".format(current.data, k))
+        return current.data
 
 
 a = LinkedList()
@@ -225,11 +272,16 @@ a.insert_end(12)
 a.insert_end(40)
 a.insert_end(120)
 a.insert_end(10222)
+a.insert_end(20)
 a.insert_end(102222222)
+a.insert_end(102222222222)
+a.insert_end(1034442)
 a.insert_position(3, 420)
 a.delete(10222)
 a.search(1960)
 a.reverse()
+a.middle()
+a.findKthFromEnd(3)
 
 a.traverse()
-
+a.size()
