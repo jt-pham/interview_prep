@@ -201,6 +201,21 @@ class LinkedList:
             print("deleted {}".format(key))
             return True
 
+    def reverse(self):
+        """
+        Reverse a linked list
+        :return: a reversed linked list
+        """
+        previous, next = None, None
+        current = self.head
+        while current is not None:
+            next = current.next
+            current.next = previous
+            previous = current
+            current = next
+        self.head = previous
+        return self.head
+
 
 
 
@@ -214,6 +229,7 @@ a.insert_end(102222222)
 a.insert_position(3, 420)
 a.delete(10222)
 a.search(1960)
+a.reverse()
 
 a.traverse()
 
