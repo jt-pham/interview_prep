@@ -14,6 +14,10 @@ class LinkedList:
         self.head = None
 
     def make_new_list(self):
+        """
+        Helper function to generate lists
+        :return: A linked list with your own values
+        """
         nums = int(input("How many nodes do you want to create: "))
         if nums == 0:
             return
@@ -22,8 +26,13 @@ class LinkedList:
             self.insert_end(value)
 
         self.traverse()
+        return self
 
     def traverse(self):
+        """
+        Print the current LinkedList
+        :return:
+        """
         current = self.head
         out_string = ""
         if current is None:
@@ -63,7 +72,12 @@ class LinkedList:
         current.next = new_node
 
     def insert_after(self, key, data):
-
+        """
+        Insert a node after a specified value
+        :param key: Node value to search, and insert after
+        :param data: Data to insert after specified key
+        :return: None
+        """
         current = self.head
         print(current.next)
         while current is not None:
@@ -78,6 +92,12 @@ class LinkedList:
             current.next = new_node
 
     def insert_before(self, key, data):
+        """
+        Insert a node before a specified value
+        :param key: Node value to search, and insert before
+        :param data: Data to insert before specified key
+        :return: None
+        """
         if self.head is None:
             print("List has no element")
             return
@@ -101,6 +121,12 @@ class LinkedList:
             new_node.next = current.next
 
     def insert_position(self, index, data):
+        """
+        Insert node at a specified index
+        :param index: position to insert data
+        :param data: data to insert
+        :return: None
+        """
         if index == 1:
             new_node = Node(data)
             new_node.next = self.head
@@ -127,4 +153,6 @@ a.insert_end(120)
 a.insert_end(10222)
 a.insert_end(102222222)
 a.insert_position(3, 420)
+b = LinkedList().make_new_list()
 a.traverse()
+b.traverse()
