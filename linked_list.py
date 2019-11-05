@@ -144,6 +144,65 @@ class LinkedList:
             new_node.next = current.next
             current.next = new_node
 
+    def search(self, key):
+        """
+        :param data: Value to search for in LinkedList
+        :return: True or False, if value is found or not
+        """
+        if self.head is None:
+            print("List has no element")
+            return False
+        current = self.head
+        while current is not None:
+            if current.data == key:
+                print("found {}".format(key))
+                return True
+            current = current.next
+        print("could not find {}".format(key))
+        return False
+
+    def delete_head(self):
+        """
+        Delete head element of LinkedList
+        Overwrite self.head with self.head.next
+        :return: True/False, if successfully deleted or not
+        """
+        if self.head is None:
+            print("so no head?")
+            return False
+        self.head = self.head.next
+
+    def delete(self, key):
+        """
+        Delete a Node by Value, if it exists
+        :param key: Node to search for and delete
+        :return: None
+        """
+        if self.head is None:
+            print("so no head?")
+            return False
+
+        if self.head.data == key:
+            print("deleted {}".format(key))
+            self.head = self.head.next
+            return True
+
+        current = self.head
+        while current is not None:
+            if current.next.data == key:
+                break
+            current = current.next
+
+        if current.next is None:
+            print("List has no element")
+            return False
+        else:
+            current.next = current.next.next
+            print("deleted {}".format(key))
+            return True
+
+
+
 
 a = LinkedList()
 a.insert_end(10)
@@ -153,6 +212,8 @@ a.insert_end(120)
 a.insert_end(10222)
 a.insert_end(102222222)
 a.insert_position(3, 420)
-b = LinkedList().make_new_list()
+a.delete(10222)
+a.search(1960)
+
 a.traverse()
-b.traverse()
+
